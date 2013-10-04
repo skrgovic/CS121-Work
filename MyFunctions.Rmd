@@ -1,0 +1,73 @@
+#Oct 1, 2013
+
+##Reverser
+
+```{r}
+
+reverser <- function(word) {
+  singlechars <- strsplit(word, split="")[[1]]
+  inds <- singlechars[rev(1:nchar(word))]
+  paste(inds, sep = "", collapse = "")
+  
+}
+```  
+  
+  
+Test cases
+```{r}
+reverser("hello")
+```
+
+
+
+##Scrambler
+
+```{r}
+
+scrambler <- function(word) {
+  singchars <- strsplit(word, split = "")[[1]]
+  scrambchars <- singchars[sample(1:nchar(word))]
+  paste(scrambchars, sep = "", collapse = "")
+}
+```
+
+
+Test cases
+```{r}
+scrambler("hello")
+```
+
+
+##VowelBleeper
+
+```{r}
+
+vbleeper <- function(word) {
+  spl <- strsplit(word, split="")[[1]]
+  bleep <- gsub("[aeiou]", "*", word[1])
+  return(bleep)
+  }
+```
+
+
+#Test cases
+```{r}
+vbleeper("hello")
+```
+
+
+##L33t
+```{r}
+l33t <- function(word) {
+  spl <- strsplit(word, split="")[[1]]
+  ch <- c(3,0,5,6)
+  change <- chartr("[eosg]", "[3056]" , word[1])
+  return(change)
+}
+```
+
+
+#Test cases
+```{r}
+l33t("how is programming going?")
+```
