@@ -1,0 +1,32 @@
+#Substitution Cypher
+```{r}
+subCypher <- function(word) {
+    spl <- strsplit(tolower(word), split = "")[[1]]
+    letters <- c("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z")
+    change = sapply( spl, FUN=function(x){which(x==letters)} )
+    return(paste(as.numeric(change), sep="", collapse=""))
+}
+subCypher("Stefan")
+```
+
+```{r}
+encryption <- function(x) {
+from <- c(".",",","?","!","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z")
+set.seed(subCypher("Stefan")); to<- sample(from)
+chartr("[.,?!abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ]","[rZmIHhGyeRQ?aTgfDVvJcLxbpuilkOdtsKYMSBNjW,nUzoFC!qA.XPwE]", x)
+}
+encryption("fire extinguisher")
+
+decryption <- function(x) {
+from <- c(".",",","?","!","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z")
+set.seed(subCypher("Stefan")); to<- sample(from)
+chartr("[rZmIHhGyeRQ?aTgfDVvJcLxbpuilkOdtsKYMSBNjW,nUzoFC!qA.XPwE]","[.,?!abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ]", x)
+}
+decryption("RaLe elbaVQpax?eL")
+
+encryption("My character is too lazy for living throughout the whole novel, so he immediately decrypts the message.")
+decryption("nk G?HLHGbeL ax bvv fHOk RvL fauaVQ b?LvpQ?vpb b?e i?vfe VvuefZ xv ?e aDDeyaHbefk yeGLkJbx b?e DexxHQer")
+  
+```
+
+
