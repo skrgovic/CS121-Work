@@ -1,0 +1,21 @@
+```{r}
+words <- readLines(url("http://dtkaplan.github.io/ScientificComputing/Syllabus/Daily/Day-07/word_list_moby_crossword-flat/word_list_moby_crossword.flat.txt"))
+
+##Report: (I used the function I had written in the previous homework, lettersMatch, to find these)
+# There are 85 words of length 2; 908 words of length 3; etc.
+# First 100 words: all 21 letter words, all 20 letter words, all 19 letter words, and 18 letter words stop at the word counterterrorists
+#6557 words starting with letter a, 6848 words starting with letter b, 10385 words starting with c, 6436 letters starting with d
+#14 words with q but no u
+```
+Crossword
+```{r}
+crossword<-function(x, expr){
+grep(expr,x, perl=TRUE,value=TRUE)
+}
+crossword(words, "^[^aeiou]+$")
+```
+Better crossword
+```{r}
+CrosswordPattern <- function(vector, length) {
+  
+  

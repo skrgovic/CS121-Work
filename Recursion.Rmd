@@ -1,0 +1,33 @@
+```{r}
+simpleRiemann <- function(f, a = 0, b = 1, n = 3) {
+    rectangleWidth = (b - a)/n
+    midpoints <- seq(a + rectangleWidth/2, b - rectangleWidth/2, length = n)
+    rectangleAreas <- sapply(midpoints, f) * rectangleWidth
+    return(sum(rectangleAreas))
+}
+
+integrateRecursive <- function(f, a = 0, b = 1) {
+    bigBins <- simpleRiemann(f, a = a, b = b, n = 5)
+    smallBins <- simpleRiemann(f, a = a, b = b, n = 10)
+    if (abs(bigBins - smallBins) < 1e-05) 
+        return(smallBins) else {
+        mid <- (a + b)/2
+        total <- integrateRecursive(f, a = a, b = mid) + integrateRecursive(f, 
+            a = mid, b = b)
+        return(total)
+    }
+}
+```
+New integrateRecursive:
+```{r}
+integrateRecursive <- function(f, a = 0, b = 1, worstcase = (a+b)/10000) {
+bigBins <- simpleRiemann(f, a = a, b = b, n = 5)
+smallBins <- simpleRiemann(f, a = a, b = b, n = 10)
+if (abs(bigBins - smallBins) < worstcase)
+return(smallBins) else {
+mid <- (a + b)/2
+total <- integrateRecursive(f, a = a, b = mid) + integrateRecursive(f,
+a = mid, b = b)
+return(total)
+}
+
